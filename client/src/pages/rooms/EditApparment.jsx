@@ -4,6 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
+  getAddressfun,
   getApartment,
   getApartments,
   updateApartment,
@@ -15,11 +16,11 @@ export default function Edit() {
   useEffect(() => {
     async function fetch() {
       await getApartment(params.roomid);
+       
     }
     fetch();
   }, [params]);
   const { apartment } = useSelector((states) => states.globalStates);
-  const { address } = useSelector((states) => states.globalStates);
 
   const [name, setName] = useState(apartment.name);
   const [description, setDescription] = useState(apartment.description);
@@ -28,19 +29,30 @@ export default function Edit() {
   const [images, setImages] = useState([]);
   const [price, setPrice] = useState(apartment.price);
   const [links, setLinks] = useState(apartment.images);
+  const [address, setaddress] = useState('');
 
-  console.log("🚀 ~ Edit ~ apartment:", links);
+
+   useEffect(() => {
+     async function fetch() {
+       const addres = await getAddressfun();
+       setaddress(addres);
+     }
+     fetch();
+   }, [params]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !name ||
-      !location ||
-      !description ||
-      !rooms ||
-      links.length != 5 ||
-      !price
-    )
-      return;
+    console.log("reaach");
+    // if (
+    //   !name ||
+    //   !location ||
+    //   !description ||
+    //   !rooms ||
+    //   links.length != 5 ||
+    //   !price
+    // )
+    //   return;
+
 
     const param = {
       ...apartment,
@@ -79,8 +91,9 @@ export default function Edit() {
 
   const removeImage = (e, index) => {
     e.preventDefault();
-    links.splice(index, 1);
-    setLinks(() => [...links]);
+    const filteredArray = links.filter((item, i) => i !== index);
+    // links.splice(index, 1);
+    setLinks(() => filteredArray);
   };
 
   return (
@@ -228,9 +241,9 @@ export default function Edit() {
             w-full text-white bg-[#ff385c]
             py-2 px-5 rounded-full drop-shadow-xl hover:bg-white
             border-transparent border
-            hover:hover:text-[#ff385c]
+            hover:hover:text-[#ff385c] cursor-pointer
              mt-5 transition-all duration-500 ease-in-out
-            ${address ? "opacity-50 cursor-not-allowed" : ""}`}
+            ${!address ? "opacity-50 cursor-not-allowed" : ""}`}
             disabled={!address}
           >
             Update Apartment

@@ -6,7 +6,7 @@ import  ConnectBtn  from './ConnectBtn';
 
 const Navbar = () => {
   return (
-    <header className=" topbar ">
+    <header className=" topbar shadow-xl shadow-gray-800 py-4">
       <Link to={"/"}>
         <p className=" text-primary-500  flex items-center text-heading3-bold">
           <FaAirbnb className=" font-semibold w-8" />

@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { connectWallet} from "../../services/blockchain";
+import { useSelector } from "react-redux";
+import {  connectWallet, getAddressfun } from "../../services/blockchain";
 
 const ConnectBtn = () => {
   const [address, setaddress] = useState("");
+  console.log("🚀 ~ ConnectBtn ~ address:", address);
 
-  // useEffect(() => {
-  //   async function fetch() {
-
-  //   }
-  //   fetch();
-
-  // }, []);
+  useEffect(() => {
+    async function fetch() {
+      const addres = await getAddressfun();
+      setaddress(addres);
+    }
+    fetch();
+  }, []);
 
   const connectWallets = async () => {
     console.log("wallet");
-    const addres = await connectWallet()
-    console.log("🚀 ~ connectWallets ~ addres:", addres)
+    const addres = await connectWallet();
     setaddress(addres);
   };
 
   return (
     <div>
-      <button
-        className=" user-card_btn px-3 py-2 text-body-bold"
-        onClick={connectWallets}
-      >
-        connect wallet
-      </button>
+      {address ? (
+        <button
+          className=" space-x-2 flex user-card_btn px-3 py-2 text-body-bold"
+          onClick={connectWallets}
+        >
+          connected
+        </button>
+      ) : (
+        <button
+          className=" user-card_btn px-3 py-2 text-body-bold"
+          onClick={connectWallets}
+        >
+          connect wallet
+        </button>
+      )}
     </div>
   );
 };

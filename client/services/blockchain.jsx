@@ -36,6 +36,7 @@ export const connectWallet = async () => {
 
 export const getAddressfun = async () => {
   const accounts = await ethereum?.request?.({ method: "eth_accounts" });
+
   return accounts[0];
 };
 
@@ -54,39 +55,35 @@ const getEthereumContracts = async () => {
     const provider = new ethers.providers.JsonRpcProvider(
       `https://sepolia.infura.io/v3/${import.meta.env.VITE_PUBLIC_RPC_URL}`
     );
-    console.log("🚀 ~ getEthereumContracts ~  provider:", provider);
-    const signer = provider.signer();
-    const contracts = new ethers.Contract(address, abi, signer);
+    // const signer = provider.signer();
+    const contracts = new ethers.Contract(address, abi, provider);
 
     return contracts;
   }
 };
 
-// const checkIfWalletIsConnect = async () => {
-//   try {
-//     if (!ethereum) return alert("Please install MetaMask.");
+export const checkIfWalletIsConnect = async () => {
+  try {
+    if (!ethereum) return alert("Please install MetaMask.");
 
-//     const accounts = await ethereum.request({ method: "eth_accounts" });
+    const accounts = await ethereum.request({ method: "eth_accounts" });
 
-//     if (accounts.length) {
-//       setCurrentAccount(accounts[0]);
+    if (accounts.length) {
+      store.dispatch(setAddress(accounts[0]));
 
-//       // getAllTransaction();
-//     } else {
-//       console.log("No accounts found");
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
+      //       // getAllTransaction();
+    } else {
+      console.log("No accounts found");
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
-//   window.ethereum.on(
-//     "accountsChanged",
-//     async function (currentAccount: string) {
-//       setCurrentAccount(currentAccount[0]);
-//       await checkIfWalletIsConnect();
-//     }
-//   );
-// };
+  window.ethereum.on("accountsChanged", async function (accounts) {
+    store.dispatch(setAddress(accounts[0]));
+    await checkIfWalletIsConnect();
+  });
+};
 
 const createApartment = async (apartment) => {
   if (!ethereum) {
@@ -230,7 +227,6 @@ const getSecurityFee = async () => {
 //   price * dates1.length + (price * dates1.length * securityFee) / 100;
 
 const bookApartment = async ({ aid, timestamps, amount }) => {
-  console.log("🚀 ~ bookApartment ~  amount:", amount);
   if (!ethereum) {
     reportError("Please install a browser provider");
     return Promise.reject(new Error("Browser provider not installed"));
@@ -238,7 +234,7 @@ const bookApartment = async ({ aid, timestamps, amount }) => {
   console.log("reach");
   try {
     const gasLimit = 900000;
-    const gasPriceWei = ethers.utils.parseUnits("50000000000", "wei"); // Gas price in wei (50 Gwei)
+    // const gasPriceWei = ethers.utils.parseUnits("50000000000", "wei"); // Gas price in wei (50 Gwei)
     const contract = await getEthereumContracts();
     tx = await contract.bookApartment(
       aid,
@@ -247,7 +243,7 @@ const bookApartment = async ({ aid, timestamps, amount }) => {
       {
         value: toWei(amount),
         gasLimit: gasLimit,
-        gasPrice: gasPriceWei,
+        // gasPrice: gasPriceWei,
       }
     );
 

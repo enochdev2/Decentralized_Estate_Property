@@ -63,7 +63,7 @@ export default function Add() {
   }
 
   return (
-    <div className="h-screen mt-12 w-full flex justify-center mb-12 mx-auto border-red-700">
+    <div className="h-screen mt-16 w-full flex justify-center mb-12 mx-auto border-red-700">
       <div className="w-full md:w-full   md:px-16  ">
         <form onSubmit={handleSubmit} className="flex flex-col m-auto max-w-4xl  lg:px-20 px-4 md:py-8 py-4 rounded-lg">
           <div className="flex justify-center items-center">

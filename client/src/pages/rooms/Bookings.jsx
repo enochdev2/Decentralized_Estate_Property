@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
   getAddressfun,
   getApartment,
   getBookings,
 } from "../../../services/blockchain";
-import { globalActions } from "../../../store/globalSlices";
 import Booking from "../../components/Booking";
 
 const Bookings = () => {
   const params = useParams();
   const [address, setaddress] = useState("");
-  console.log("🚀 ~ Room ~  address:", address);
 
   const { apartment, bookings } = useSelector((states) => states.globalStates);
-  console.log("🚀 ~ Bookings ~ bookings:", bookings);
-  // console.log("🚀 ~ Bookings ~ apartment:", apartment)
+  // console.log("🚀 ~ Bookings ~ bookings:", bookings);
 
   useEffect(() => {
     async function fetch() {

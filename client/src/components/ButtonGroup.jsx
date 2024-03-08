@@ -26,10 +26,10 @@ const ButtonGroup = () => {
             h-auto min-w-[74px] text-heading4-medium rounded-lg text-[12px] text-light-1 
             "
         >
-          create
+          Add
         </button>
       </Link>
-
+      <Link to="/about" >
       <button
         className="
            h-auto min-w-[74px] text-heading4-medium rounded-lg text-[12px] text-white 
@@ -37,6 +37,8 @@ const ButtonGroup = () => {
       >
         <p className="flex items-center">About</p>
       </button>
+      </Link>
+
       <button
         className="
            h-auto min-w-[74px] text-heading4-medium rounded-lg text-[12px] text-white 
