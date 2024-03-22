@@ -1,3 +1,4 @@
+
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Navbar from "./components/Navbar";
@@ -10,7 +11,6 @@ import About from "./pages/about";
 
 
 function App() {
-
   return (
     <div className="relative min-h-screen min-w-screen main-container">
       <Navbar />
@@ -28,14 +28,3 @@ function App() {
 }
 
 export default App;
-
-//  <Routes>
-//         <Route element={<Layout />}>
-//           <Route path='/' element={<Home />} />
-//           <Route path='/profile/:id?' element={<Profile />} />
-//         </Route>
-
-//         <Route path='/register' element={<Register />} />
-//         <Route path='/login' element={<Login />} />
-//         <Route path='/reset-password' element={<ResetPassword />} />
-//       </Routes>
