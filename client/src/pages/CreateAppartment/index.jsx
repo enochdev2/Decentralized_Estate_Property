@@ -205,9 +205,9 @@ export default function Add() {
             border-transparent border
             hover:hover:text-[#ff385c]
             hover:border-[#ff385c]
+            cursor-pointer
             // mt-5 transition-all duration-500 ease-in-out
             ${address ? "opacity-50 cursor-not-allowed" : ""}`}
-            disabled={!address}
           >
             Add Appartment
           </button>

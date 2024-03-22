@@ -43,15 +43,15 @@ export default function Edit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("reaach");
-    // if (
-    //   !name ||
-    //   !location ||
-    //   !description ||
-    //   !rooms ||
-    //   links.length != 5 ||
-    //   !price
-    // )
-    //   return;
+    if (
+      !name ||
+      !location ||
+      !description ||
+      !rooms ||
+      links.length != 5 ||
+      !price
+    )
+      return;
 
 
     const param = {
@@ -73,6 +73,7 @@ export default function Edit() {
           })
           .catch(() => reject());
       }),
+      
       {
         pending: "Approve transaction...",
         success: "Apartment updated successfully 👌",

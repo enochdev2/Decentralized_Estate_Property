@@ -85,6 +85,9 @@ export const checkIfWalletIsConnect = async () => {
   });
 };
 
+const gasPriceWei = ethers.utils.parseUnits("100000000000", "wei"); // Gas price in wei (50 Gwei)
+const gasLimit = 10549328;
+
 const createApartment = async (apartment) => {
   if (!ethereum) {
     reportError("Please install a browser provider");
@@ -92,14 +95,20 @@ const createApartment = async (apartment) => {
   }
 
   try {
-    const contract = await getEthereumContracts();
+   const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(address, abi, signer);
     tx = await contract.createAppartment(
       apartment.name,
       apartment.description,
       apartment.location,
       apartment.images,
       apartment.rooms,
-      toWei(apartment.price)
+      toWei(apartment.price),
+      {
+        gasLimit: gasLimit,
+        gasPrice: gasPriceWei,
+      }
     );
     await tx.wait();
     console.log("🚀 ~ createApartment ~ tx:", tx);
@@ -126,7 +135,11 @@ const updateApartment = async (apartment) => {
       apartment.location,
       apartment.images,
       apartment.rooms,
-      toWei(apartment.price)
+      toWei(apartment.price),
+      {
+        gasLimit: gasLimit,
+        gasPrice: gasPriceWei,
+      }
     );
     await tx.wait();
 

@@ -9,39 +9,38 @@ const ButtonGroup = () => {
     >
       {/* <div className="inline-flex" role="group"> */}
       <Link to="/">
-      <button
-        className="
-       h-auto min-w-[74px] text-heading4-medium rounded-lg text-[12px] text-light-1 
+        <button
+          className="
+       h-auto min-w-[74px] text-body-medium rounded-lg text-[12px] text-light-1 
           "
-      >
-        Home
-      </button>
-
+        >
+          Home
+        </button>
       </Link>
 
       <Link to="/add">
         <button
           type="button"
           className="
-            h-auto min-w-[74px] text-heading4-medium rounded-lg text-[12px] text-light-1 
+            h-auto min-w-[74px] text-body-medium rounded-lg text-[12px] text-light-1 
             "
         >
           Add
         </button>
       </Link>
-      <Link to="/about" >
-      <button
-        className="
-           h-auto min-w-[74px] text-heading4-medium rounded-lg text-[12px] text-white 
+      <Link to="/about">
+        <button
+          className="
+           h-auto min-w-[74px] text-body-medium rounded-lg text-[12px] text-white 
           "
-      >
-        <p className="flex items-center">About</p>
-      </button>
+        >
+          <p className="flex items-center">About</p>
+        </button>
       </Link>
 
       <button
         className="
-           h-auto min-w-[74px] text-heading4-medium rounded-lg text-[12px] text-white 
+           h-auto min-w-[74px] text-body-medium rounded-lg text-[12px] text-white 
           "
       >
         <p className="flex items-center">Help</p>
