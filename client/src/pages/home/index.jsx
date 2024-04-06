@@ -3,11 +3,11 @@ import { Collection } from "../../components";
 import Category from "../../components/Category";
 import { getApartments } from "../../../services/blockchain";
 import { useDispatch, useSelector } from "react-redux";
+import Hero from "../../components/Hero";
 
 export default function Home() {
   const { apartments } = useSelector((states) => states.globalStates);
-
-  useEffect(() => {
+   useEffect(() => {
     async function fetch() {
       await getApartments();
     }
@@ -15,9 +15,17 @@ export default function Home() {
   }, [getApartments]);
 
   return (
-    <div className="min-h-screen space-y-1 mt-24">
+<main>
+<section className="container">
+  <Hero/>
+</section>
+<section>
+    <div className="min-h-screen space-y-1 mt-2" id="appartment">
+
       <Category />
       <Collection appartments={apartments} />
     </div>
+</section>
+</main>
   );
 }
