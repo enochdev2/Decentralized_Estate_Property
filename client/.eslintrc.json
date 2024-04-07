@@ -1,7 +1,7 @@
 {
   "extends": [
-    // "standard",
-    "eslint:recommended",
+    "standard",
+    // "eslint:recommended",
     "plugin:react/recommended",
     "plugin:tailwindcss/recommended",
     "prettier"

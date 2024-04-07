@@ -1,13 +1,12 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Add from "./pages/CreateAppartment";
-import Bookings from "./pages/rooms/Bookings";
-import Room from "./pages/rooms/simgleRoom";
-import Edit from "./pages/rooms/EditApparment";
-import About from "./pages/about";
-
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Add from './pages/CreateAppartment';
+import Bookings from './pages/rooms/Bookings';
+import Room from './pages/rooms/simgleRoom';
+import Edit from './pages/rooms/EditApparment';
+import About from './pages/about';
 
 function App() {
   return (

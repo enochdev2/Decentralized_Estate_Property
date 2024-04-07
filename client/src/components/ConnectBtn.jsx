@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import {  connectWallet, getAddressfun } from "../../services/blockchain";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { connectWallet, getAddressfun } from '../../services/blockchain';
 
 const ConnectBtn = () => {
-  const [address, setaddress] = useState("");
-  console.log("🚀 ~ ConnectBtn ~ address:", address);
+  const [address, setaddress] = useState('');
+  console.log('🚀 ~ ConnectBtn ~ address:', address);
 
   useEffect(() => {
     async function fetch() {
@@ -15,7 +15,7 @@ const ConnectBtn = () => {
   }, []);
 
   const connectWallets = async () => {
-    console.log("wallet");
+    console.log('wallet');
     const addres = await connectWallet();
     setaddress(addres);
   };

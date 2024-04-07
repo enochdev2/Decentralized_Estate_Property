@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import {
   getAddressfun,
   getApartment,
   getBookings,
-} from "../../../services/blockchain";
-import Booking from "../../components/Booking";
+} from '../../../services/blockchain';
+import Booking from '../../components/Booking';
 
 const Bookings = () => {
   const params = useParams();
-  const [address, setaddress] = useState("");
+  const [address, setaddress] = useState('');
 
   const { apartment, bookings } = useSelector((states) => states.globalStates);
-  // console.log("🚀 ~ Bookings ~ bookings:", bookings);
 
   useEffect(() => {
     async function fetch() {

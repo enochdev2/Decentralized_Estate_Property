@@ -11,7 +11,7 @@ const Title = ({ apartment }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Title
+export default Title;

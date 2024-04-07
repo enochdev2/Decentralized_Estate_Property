@@ -1,14 +1,13 @@
-import React from 'react'
-import { ImageSlider } from './'
-import { FaStar, FaEthereum } from 'react-icons/fa'
+import React from 'react';
+import { ImageSlider } from './';
+import { FaStar, FaEthereum } from 'react-icons/fa';
 import { formatDate } from '../../utils/helper';
 import { Link } from 'react-router-dom';
-
 
 const Card = ({ appartment }) => {
   return (
     <div className="shadow-md bg-primary-500 py-2 px-2 border-primary-500 w-[26rem] text-xl pb-5 gap-4 rounded-b-2xl mb-20">
-      <Link to={"/room/" + appartment.id}>
+      <Link to={'/room/' + appartment.id}>
         <ImageSlider images={appartment.images} />
       </Link>
       <div className="px-4 bg-dark-2 py-2  rounde-lg">
@@ -31,6 +30,6 @@ const Card = ({ appartment }) => {
       </div>
     </div>
   );
-}
+};
 
-export default Card
+export default Card;

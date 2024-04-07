@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { FaTimes } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { FaTimes } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import {
   getAddressfun,
   getApartment,
   getApartments,
   updateApartment,
-} from "../../../services/blockchain";
-import { truncate } from "../../../utils/helper";
+} from '../../../services/blockchain';
+import { truncate } from '../../../utils/helper';
 
 export default function Edit() {
   const params = useParams();
   useEffect(() => {
     async function fetch() {
       await getApartment(params.roomid);
-       
     }
     fetch();
   }, [params]);
@@ -31,18 +30,17 @@ export default function Edit() {
   const [links, setLinks] = useState(apartment.images);
   const [address, setaddress] = useState('');
 
-
-   useEffect(() => {
-     async function fetch() {
-       const addres = await getAddressfun();
-       setaddress(addres);
-     }
-     fetch();
-   }, [params]);
+  useEffect(() => {
+    async function fetch() {
+      const addres = await getAddressfun();
+      setaddress(addres);
+    }
+    fetch();
+  }, [params]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("reaach");
+    console.log('reaach');
     if (
       !name ||
       !location ||
@@ -53,14 +51,13 @@ export default function Edit() {
     )
       return;
 
-
     const param = {
       ...apartment,
       name,
       description,
       location,
       rooms,
-      images: links.slice(0, 5).join(","),
+      images: links.slice(0, 5).join(','),
       price,
     };
 
@@ -68,16 +65,16 @@ export default function Edit() {
       new Promise(async (resolve, reject) => {
         await updateApartment(param)
           .then(async () => {
-            navigate.push("/room/" + apartment.id);
+            navigate.push('/room/' + apartment.id);
             resolve();
           })
           .catch(() => reject());
       }),
-      
+
       {
-        pending: "Approve transaction...",
-        success: "Apartment updated successfully 👌",
-        error: "Encountered error 🤯",
+        pending: 'Approve transaction...',
+        success: 'Apartment updated successfully 👌',
+        error: 'Encountered error 🤯',
       }
     );
   };
@@ -87,7 +84,7 @@ export default function Edit() {
     if (links.length != 5) {
       setLinks((prevState) => [...prevState, images]);
     }
-    setImages("");
+    setImages('');
   };
 
   const removeImage = (e, index) => {
@@ -244,7 +241,7 @@ export default function Edit() {
             border-transparent border
             hover:hover:text-[#ff385c] cursor-pointer
              mt-5 transition-all duration-500 ease-in-out
-            ${!address ? "opacity-50 cursor-not-allowed" : ""}`}
+            ${!address ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={!address}
           >
             Update Apartment

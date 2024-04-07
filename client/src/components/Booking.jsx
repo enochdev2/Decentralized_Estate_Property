@@ -1,8 +1,8 @@
-import { toast } from "react-toastify";
-import { formatDate, truncate } from "../../utils/helper";
-import { checkInApartment, refundBooking } from "../../services/blockchain";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import { formatDate, truncate } from '../../utils/helper';
+import { checkInApartment, refundBooking } from '../../services/blockchain';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Booking = ({ booking, address }) => {
   const handleCheckIn = async () => {
@@ -16,9 +16,9 @@ const Booking = ({ booking, address }) => {
           .catch((error) => reject(error));
       }),
       {
-        pending: "Approve transaction...",
-        success: "Checked In successfully 👌",
-        error: "Encountered error 🤯",
+        pending: 'Approve transaction...',
+        success: 'Checked In successfully 👌',
+        error: 'Encountered error 🤯',
       }
     );
   };
@@ -33,9 +33,9 @@ const Booking = ({ booking, address }) => {
           .catch(() => reject());
       }),
       {
-        pending: "Approve transaction...",
-        success: "Refunded successfully 👌",
-        error: "Encountered error 🤯",
+        pending: 'Approve transaction...',
+        success: 'Refunded successfully 👌',
+        error: 'Encountered error 🤯',
       }
     );
   };
@@ -64,10 +64,10 @@ const TenantView = ({ booking, functions, owner }) => {
       <Link
         className="flex justify-start items-center
       space-x-2 font-medium"
-        to={"/room/" + booking.id}
+        to={'/room/' + booking.id}
       >
         <div className="rounded-full shadow-gray-500 shadow-sm">
-          {" "}
+          {' '}
           {`${booking.tenant.slice(0, 10)}`}
         </div>
         <div className="flex flex-col">

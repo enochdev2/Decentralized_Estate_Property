@@ -1,8 +1,8 @@
-import React from "react";
-import { TbBeach } from 'react-icons/tb'
-import { GiCampingTent, GiIsland } from 'react-icons/gi'
-import { BsSnow2 } from 'react-icons/bs'
-import { RiHotelLine } from 'react-icons/ri'
+import React from 'react';
+import { TbBeach } from 'react-icons/tb';
+import { GiCampingTent, GiIsland } from 'react-icons/gi';
+import { BsSnow2 } from 'react-icons/bs';
+import { RiHotelLine } from 'react-icons/ri';
 
 const Category = () => {
   return (

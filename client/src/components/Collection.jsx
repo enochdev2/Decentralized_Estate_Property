@@ -1,4 +1,4 @@
-import { Card } from "./";
+import { Card } from './';
 
 const Collection = ({ appartments }) => {
   return (
@@ -12,4 +12,3 @@ const Collection = ({ appartments }) => {
 };
 
 export default Collection;
-// //

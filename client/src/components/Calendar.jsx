@@ -1,28 +1,28 @@
-import moment from "moment";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import DatePicker from "react-datepicker";
-import { FaEthereum } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { bookApartment } from "../../services/blockchain";
+import moment from 'moment';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import DatePicker from 'react-datepicker';
+import { FaEthereum } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { bookApartment } from '../../services/blockchain';
 
 const Calendar = ({ apartment, timestamps }) => {
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+  const [checkInDate, setCheckInDate] = useState('');
+  const [checkOutDate, setCheckOutDate] = useState('');
   const { securityFee } = useSelector((states) => states.globalStates);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!checkInDate || !checkOutDate) return;
     const start = moment(checkInDate);
     const end = moment(checkOutDate);
-    console.log("🚀 ~ handleSubmit ~  start:", start);
+    console.log('🚀 ~ handleSubmit ~  start:', start);
     const timestampArray = [];
-    
+
     while (start <= end) {
       timestampArray.push(start.valueOf());
-      start.add(1, "days");
+      start.add(1, 'days');
     }
 
     const params = {
@@ -32,7 +32,7 @@ const Calendar = ({ apartment, timestamps }) => {
         apartment?.price * timestampArray.length +
         (apartment?.price * timestampArray.length * securityFee) / 100,
     };
-    console.log("🚀 ~ handleSubmit ~ params:", params)
+    console.log('🚀 ~ handleSubmit ~ params:', params);
 
     await toast.promise(
       new Promise(async (resolve, reject) => {
@@ -44,9 +44,9 @@ const Calendar = ({ apartment, timestamps }) => {
           .catch(() => reject());
       }),
       {
-        pending: "Approve transaction...",
-        success: "Apartment booked successfully 👌",
-        error: "Encountered error 🤯",
+        pending: 'Approve transaction...',
+        success: 'Apartment booked successfully 👌',
+        error: 'Encountered error 🤯',
       }
     );
   };

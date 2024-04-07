@@ -1,28 +1,36 @@
-import { useState } from 'react'
-import { FaTimes } from 'react-icons/fa'
-import { truncate } from '../../../utils/helper'
-import { toast } from 'react-toastify'
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { FaTimes } from 'react-icons/fa';
+import { truncate } from '../../../utils/helper';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // import { useAccount } from 'wagmi'
-import { createApartment } from '../../../services/blockchain'
+import { createApartment } from '../../../services/blockchain';
 
 export default function Add() {
-   const { address } = useSelector((states) => states.globalStates);
+  const { address } = useSelector((states) => states.globalStates);
 
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [location, setLocation] = useState('')
-  const [rooms, setRooms] = useState('')
-  const [images, setImages] = useState('')
-  const [price, setPrice] = useState('')
-  const [links, setLinks] = useState([])
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [rooms, setRooms] = useState('');
+  const [images, setImages] = useState('');
+  const [price, setPrice] = useState('');
+  const [links, setLinks] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (!name || !location || !description || !rooms || links.length != 5 || !price) return
+    e.preventDefault();
+    if (
+      !name ||
+      !location ||
+      !description ||
+      !rooms ||
+      links.length != 5 ||
+      !price
+    )
+      return;
 
     const params = {
       name,
@@ -31,43 +39,48 @@ export default function Add() {
       rooms,
       images: links.slice(0, 5).join(','),
       price,
-    }
+    };
 
     await toast.promise(
       new Promise(async (resolve, reject) => {
         await createApartment(params)
           .then(async () => {
-            navigate.push('/')
-            resolve()
+            navigate.push('/');
+            resolve();
           })
-          .catch(() => reject())
+          .catch(() => reject());
       }),
       {
         pending: 'Approve transaction...',
         success: 'Apartment added successfully 👌',
         error: 'Encountered error 🤯',
       }
-    )
-  }
+    );
+  };
 
   const addImage = () => {
     if (links.length != 5) {
-      setLinks((prevState) => [...prevState, images])
+      setLinks((prevState) => [...prevState, images]);
     }
-    setImages('')
-  }
+    setImages('');
+  };
 
   const removeImage = (index) => {
-    links.splice(index, 1)
-    setLinks(() => [...links])
-  }
+    links.splice(index, 1);
+    setLinks(() => [...links]);
+  };
 
   return (
     <div className="h-screen mt-16 w-full flex justify-center mb-12 mx-auto border-red-700">
       <div className="w-full md:w-full   md:px-16  ">
-        <form onSubmit={handleSubmit} className="flex flex-col m-auto max-w-4xl  lg:px-20 px-4 md:py-8 py-4 rounded-lg">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col m-auto max-w-4xl  lg:px-20 px-4 md:py-8 py-4 rounded-lg"
+        >
           <div className="flex justify-center items-center">
-            <p className=" text-purple-600 font-bold  text-body1-bold">Add Room</p>
+            <p className=" text-purple-600 font-bold  text-body1-bold">
+              Add Room
+            </p>
           </div>
 
           <div className="flex flex-row justify-between items-center border border-gray-300 p-2 rounded-xl mt-5">
@@ -207,7 +220,7 @@ export default function Add() {
             hover:border-[#ff385c]
             cursor-pointer
             // mt-5 transition-all duration-500 ease-in-out
-            ${address ? "opacity-50 cursor-not-allowed" : ""}`}
+            ${address ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             Add Appartment
           </button>
