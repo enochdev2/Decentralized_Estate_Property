@@ -10,7 +10,7 @@ import About from './pages/about';
 
 function App() {
   return (
-    <div className="relative min-h-screen min-w-screen ">
+    <div className="relative min-h-screen min-w-screen  bg-dark-2">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

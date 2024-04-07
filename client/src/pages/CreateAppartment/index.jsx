@@ -71,7 +71,7 @@ export default function Add() {
   };
 
   return (
-    <div className="h-screen mt-16 w-full flex justify-center mb-12 mx-auto border-red-700">
+    <div className="h-screen mt-16 w-full flex justify-center mb-12 mx-auto border-red-700  bg-dark-2">
       <div className="w-full md:w-full   md:px-16  ">
         <form
           onSubmit={handleSubmit}

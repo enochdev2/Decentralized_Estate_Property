@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="text-white mt-20 min-h-screen w-10/12 m-auto space-y-3">
+    <div className="text-white mt-20 min-h-screen w-10/12 m-auto space-y-3  bg-dark-2">
       <h1 className="text-heading1-bold text-primary-500">
         About Decentralized Estate Property
       </h1>

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import {
   getAddressfun,
   getApartment,
@@ -8,8 +8,8 @@ import {
   getQualifiedReviewers,
   getReviews,
   getSecurityFee,
-} from "../../../services/blockchain";
-import { globalActions } from "../../../store/globalSlices";
+} from '../../../services/blockchain';
+import { globalActions } from '../../../store/globalSlices';
 import {
   Actions,
   AddReview,
@@ -18,11 +18,11 @@ import {
   ImageGrid,
   Review,
   Title,
-} from "../../components";
+} from '../../components';
 
 export default function Room() {
   const params = useParams();
-  const [address, setaddress] = useState("");
+  const [address, setaddress] = useState('');
   const [getQualifiedReviewer, setGetQualifiedReviewer] = useState([]);
 
   const dispatch = useDispatch();
@@ -31,36 +31,32 @@ export default function Room() {
   const { apartment, bookings } = useSelector((states) => states.globalStates);
   const { timestamps, reviews } = useSelector((states) => states.globalStates);
 
-  // console.log("🚀 ~ app ~ apartment:", apartment);
-  // console.log("🚀 ~ reviews:", reviews);
-  // console.log("🚀 ~ timestamps:", timestamps);
-  useEffect(
-    () => {
-      async function fetch() {
-        const addres = await getAddressfun();
-        setaddress(addres);
-        await getApartment(params.roomid);
-        await getBookedDates(params.roomid);
-        await getReviews(params.roomid);
-        await getSecurityFee();
-        const getQualifiedreviewer = await getQualifiedReviewers(params.roomid);
-        setGetQualifiedReviewer(getQualifiedreviewer);
-      }
-      fetch();
-      //     dispatch(setTimestamps(timestampsData));
-    },
-    [
-      //     setTimestamps,
-    ]
-  );
+  
+  useEffect(() => {
+    async function fetch() {
+      const addres = await getAddressfun();
+      setaddress(addres);
+      await getApartment(params.roomid);
+      await getBookedDates(params.roomid);
+      await getReviews(params.roomid);
+      await getSecurityFee();
+      const getQualifiedreviewer = await getQualifiedReviewers(params.roomid);
+      setGetQualifiedReviewer(getQualifiedreviewer);
+    }
+    fetch();
+    // if (!address)
+    //   return alert(
+    //     'The smart contract is on the Sepolia testnet. Connect your wallet and use the Sepolia network '
+    //   );
+  }, []);
 
   const handleReviewOpen = () => {
-    dispatch(setReviewModal("scale-100"));
+    dispatch(setReviewModal('scale-100'));
   };
 
   return (
     <>
-      <div className="py-8 px-10 sm:px-20 md:px-32 space-y-8 text-white text-base-medium">
+      <div className="py-8 px-10 sm:px-20 md:px-32 space-y-8 text-white text-base-medium  bg-dark-2">
         <Title apartment={apartment} />
 
         <ImageGrid
@@ -96,7 +92,7 @@ export default function Room() {
             {reviews.map((review, i) => (
               <Review key={i} review={review} />
             ))}
-            {reviews.length < 1 && "No reviews yet!"}
+            {reviews.length < 1 && 'No reviews yet!'}
           </div>
         </div>
       </div>
