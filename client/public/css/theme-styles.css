@@ -1385,7 +1385,7 @@ body.crumina-grid .kc_col-of-5 {
   width: 100%;
 }
 
-.container {
+.containers {
   padding-right: 20px;
   padding-left: 20px;
   margin-right: auto;
@@ -1393,7 +1393,7 @@ body.crumina-grid .kc_col-of-5 {
 }
 
 @media (min-width: 768px) {
-  .container {
+  .containers {
     width: 710px;
     padding-right: 20px;
     padding-left: 20px;
@@ -1411,25 +1411,25 @@ body.crumina-grid .kc_col-of-5 {
 }
 
 @media (min-width: 1200px) {
-  .container {
+  .containers {
     width: 1140px;
   }
 }
 
 @media (min-width: 1300px) {
-  .container {
+  .containers {
     width: 1240px;
   }
 }
 
 @media (min-width: 1400px) {
-  .container {
+  .containers {
     width: 1340px;
   }
 }
 
 @media (min-width: 1500px) {
-  .container {
+  .containers {
     width: 1440px;
   }
 }
@@ -6684,14 +6684,12 @@ nav li.menu-item-has-mega-menu ul.mega-menu-row li {
 /*------------- #FOOTER --------------*/
 
 .footer {
-  padding: 100px 0;
+  padding: 200px 0;
   text-align: center;
   color: #c3c9d4;
   position: relative;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-  /* background: url(../img/body-bg.png); */
+  background: url(../img/body-bg.png);
 }
 
 .footer .widget {

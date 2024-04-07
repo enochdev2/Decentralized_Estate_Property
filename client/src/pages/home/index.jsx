@@ -15,7 +15,7 @@ export default function Home() {
   }, [getApartments]);
 
   return (
-<main>
+<main className="main-container">
 <section className="container">
   <Hero/>
 </section>

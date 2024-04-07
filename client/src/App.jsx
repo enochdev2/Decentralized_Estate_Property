@@ -11,7 +11,7 @@ import About from "./pages/about";
 
 function App() {
   return (
-    <div className="relative min-h-screen min-w-screen main-container">
+    <div className="relative min-h-screen min-w-screen ">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
