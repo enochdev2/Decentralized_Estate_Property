@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Home from './pages/home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -21,6 +23,18 @@ function App() {
         <Route path="/rooms/bookings/:roomid" element={<Bookings />} />
       </Routes>
       <Footer />
+       <ToastContainer
+            position="top-center"
+            autoClose={7000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
     </div>
   );
 }

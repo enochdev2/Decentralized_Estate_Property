@@ -4,6 +4,7 @@ import Category from '../../components/Category';
 import { getApartments } from '../../../services/blockchain';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../components/Hero';
+import { toast } from 'react-toastify';
 
 export default function Home() {
   const { apartments } = useSelector((states) => states.globalStates);
@@ -12,6 +13,9 @@ export default function Home() {
       await getApartments();
     }
     fetch();
+    toast(
+      'The smart contract is on the Sepolia testnet. Connect your wallet and use the Sepolia network!'
+    );
   }, [getApartments]);
 
   return (

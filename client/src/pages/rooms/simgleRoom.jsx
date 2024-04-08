@@ -19,6 +19,7 @@ import {
   Review,
   Title,
 } from '../../components';
+import { toast } from 'react-toastify';
 
 export default function Room() {
   const params = useParams();
@@ -31,8 +32,8 @@ export default function Room() {
   const { apartment, bookings } = useSelector((states) => states.globalStates);
   const { timestamps, reviews } = useSelector((states) => states.globalStates);
 
-  
   useEffect(() => {
+
     async function fetch() {
       const addres = await getAddressfun();
       setaddress(addres);
@@ -43,11 +44,12 @@ export default function Room() {
       const getQualifiedreviewer = await getQualifiedReviewers(params.roomid);
       setGetQualifiedReviewer(getQualifiedreviewer);
     }
-    fetch();
-    // if (!address)
-    //   return alert(
-    //     'The smart contract is on the Sepolia testnet. Connect your wallet and use the Sepolia network '
-    //   );
+    setTimeout(() => {
+      fetch();
+    }, 7000);
+     toast(
+       'The smart contract is on the Sepolia testnet. Use the Sepolia network to veiw the details page and more!'
+     );
   }, []);
 
   const handleReviewOpen = () => {
